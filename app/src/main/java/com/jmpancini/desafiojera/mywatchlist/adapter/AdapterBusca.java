@@ -11,8 +11,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.jmpancini.desafiojera.mywatchlist.R;
+import com.jmpancini.desafiojera.mywatchlist.activity.BuscaActivity;
 import com.jmpancini.desafiojera.mywatchlist.config.ConfiguracaoFirebase;
 import com.jmpancini.desafiojera.mywatchlist.model.Filme;
 import com.squareup.picasso.Picasso;
@@ -57,11 +59,14 @@ public class AdapterBusca extends RecyclerView.Adapter<AdapterBusca.MyViewHolder
         holder.botaoAdicionar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-               Task task = ConfiguracaoFirebase.SetValue(ConfiguracaoFirebase.GetFilmeDataPath(holder.id) + "/assistido","false");
-               if(task.isSuccessful()){
-                   Toast.makeText( v.getContext(), "Filme adicionado ao seu perfil", Toast.LENGTH_SHORT).show();
-               }
+                Task task = ConfiguracaoFirebase.getInstanciaFirebase().getReference(ConfiguracaoFirebase.GetFilmeDataPath(holder.id)).child("assistido").setValue("false").addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Toast.makeText(holder.itemView.getContext(), holder.titulo.getText() + " foi adicionado a sua Watchlist", Toast.LENGTH_SHORT).show();
+                        filmes.remove(holder.getAdapterPosition());
+                        notifyDataSetChanged();
+                    }
+                });
             }
         });
 

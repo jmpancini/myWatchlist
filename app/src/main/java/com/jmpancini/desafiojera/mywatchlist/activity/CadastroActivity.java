@@ -20,10 +20,12 @@ import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.jmpancini.desafiojera.mywatchlist.R;
 import com.jmpancini.desafiojera.mywatchlist.config.ConfiguracaoFirebase;
 import com.jmpancini.desafiojera.mywatchlist.model.Usuario;
+import com.vicmikhailau.maskededittext.MaskedEditText;
 
 public class CadastroActivity extends AppCompatActivity {
 
-    private EditText campoNome, campoDataDeNascimeto, campoEmail, campoSenha;
+    private EditText campoNome, campoEmail, campoSenha;
+    private MaskedEditText campoDataDeNascimeto;
     private Button botaoCadastrar;
     private FirebaseAuth autenticacao;
     private Usuario usuario;
@@ -44,12 +46,12 @@ public class CadastroActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String textoNome = campoNome.getText().toString();
-                String textoDataDeNascimento = campoDataDeNascimeto.getText().toString();
+                String textoDataDeNascimento = campoDataDeNascimeto.getText().toString().replaceAll(" ","");
                 String textoEmail = campoEmail.getText().toString();
                 String textoSenha = campoSenha.getText().toString();
 
                 if(!textoNome.isEmpty()){
-                    if(!textoDataDeNascimento.isEmpty()){
+                    if(textoDataDeNascimento.length()==10){
                         if(!textoEmail.isEmpty()){
                             if(!textoSenha.isEmpty()){
 
@@ -62,13 +64,13 @@ public class CadastroActivity extends AppCompatActivity {
                                 cadastrarUsuario();
 
                             }else{
-                                Toast.makeText(CadastroActivity.this,"Preencha a Senha!", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CadastroActivity.this,"Senha deve ter ao menos 6 caracteres!", Toast.LENGTH_SHORT).show();
                             }
                         }else{
                             Toast.makeText(CadastroActivity.this,"Preencha o Email!", Toast.LENGTH_SHORT).show();
                         }
                     }else{
-                        Toast.makeText(CadastroActivity.this,"Preencha a Data de Nascimento!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CadastroActivity.this,"Data de Nascimento Invalida!" , Toast.LENGTH_SHORT).show();
                     }
                 }else{
                     Toast.makeText(CadastroActivity.this,"Preencha o Nome!", Toast.LENGTH_SHORT).show();

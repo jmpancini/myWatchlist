@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,8 +26,10 @@ import com.jmpancini.desafiojera.mywatchlist.R;
 import com.jmpancini.desafiojera.mywatchlist.adapter.AdapterFilmes;
 import com.jmpancini.desafiojera.mywatchlist.config.ConfiguracaoFirebase;
 import com.jmpancini.desafiojera.mywatchlist.model.Filme;
+import com.jmpancini.desafiojera.mywatchlist.model.Genero;
 import com.jmpancini.desafiojera.mywatchlist.network.ApiService;
 import com.jmpancini.desafiojera.mywatchlist.network.response.FilmeResponse;
+import com.jmpancini.desafiojera.mywatchlist.network.response.GenreResult;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,11 +47,15 @@ public class WatchlistActivity extends AppCompatActivity {
     private List<Filme> filmes = new ArrayList<>();
     private AdapterFilmes adapterFilmes;
 
+    private static Genero generoPredileto;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_watchlist);
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle("Watchlist");
         setSupportActionBar(toolbar);
 
 
@@ -148,6 +155,7 @@ public class WatchlistActivity extends AppCompatActivity {
     }
 
     public void buscaDetalhes(final Filme filme){
+        Genero.resetContador();
         ApiService.getInstance()
                 .buscarDetalhes( filme.getId())
                 .enqueue(new Callback<FilmeResponse>() {
@@ -156,6 +164,13 @@ public class WatchlistActivity extends AppCompatActivity {
                         if(response.isSuccessful()){
                             filme.setTitulo(response.body().getTitle());
                             filme.setImgUrl("https://image.tmdb.org/t/p/w500" + response.body().getPoster_path());
+                            filme.setGenres(new ArrayList<Genero>());
+
+                            for(GenreResult g : response.body().getGenres()){
+                                filme.getGenres().add(new Genero());
+                                filme.getGenres().get(response.body().getGenres().indexOf(g)).setId(g.getId());
+                                filme.getGenres().get(response.body().getGenres().indexOf(g)).setName(g.getName());
+                            }
                             adapterFilmes.notifyDataSetChanged();
                         }
 

@@ -1,6 +1,8 @@
 package com.jmpancini.desafiojera.mywatchlist.model;
 
 
+import java.util.List;
+
 public class Filme{
 
     private String id;
@@ -8,10 +10,17 @@ public class Filme{
     private String data;
     private String titulo;
     private String imgUrl;
-
-
+    private List<Genero> genres;
 
     public Filme() {
+    }
+
+    public List<Genero> getGenres() {
+        return genres;
+    }
+
+    public void setGenres(List<Genero> genres) {
+        this.genres = genres;
     }
 
     public String getId() {

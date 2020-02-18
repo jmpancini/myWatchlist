@@ -16,4 +16,7 @@ public interface FilmeService {
 
     @GET("search/movie?api_key=fff6820549291d8f03648ce827885017&language=pt-BR&include_adult=false")
     Call<SearchResponse> buscarFilmes(@Query("query") String query, @Query("page") int page);
+
+    @GET("discover/movie?api_key=fff6820549291d8f03648ce827885017&language=pt-BR&sort_by=popularity.desc&include_adult=false&include_video=false")
+    Call<SearchResponse> discoverFilmes(@Query("page") int page, @Query("with_genres") String with_genres);
 }
