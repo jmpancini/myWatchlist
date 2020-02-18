@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "250119818772",
+    "firebase_url": "https://mywatchlist-63262.firebaseio.com",
+    "project_id": "mywatchlist-63262",
+    "storage_bucket": "mywatchlist-63262.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:250119818772:android:d31b141cbb1ad051b06101",
+        "android_client_info": {
+          "package_name": "com.jmpancini.desafiojera.mywatchlist"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "250119818772-u46t5njea5lpq58lv4kj6aj05u0r51te.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jmpancini.desafiojera.mywatchlist",
+            "certificate_hash": "3927355a68bc5d74511d659ce827339b748d34d1"
+          }
+        },
+        {
+          "client_id": "250119818772-rui2ru6dvmc2q5rqc6uujcbt4sph1mi7.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCxJUlD4lDBBLUaE3J3JwpEG8ao2j3ksNg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "250119818772-rui2ru6dvmc2q5rqc6uujcbt4sph1mi7.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
