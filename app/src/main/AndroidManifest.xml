@@ -11,11 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <activity
             android:name=".activity.BuscaActivity"
             android:label="@string/title_activity_busca"
             android:parentActivityName=".activity.WatchlistActivity"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.jmpancini.desafiojera.mywatchlist.activity.WatchlistActivity" />
@@ -24,10 +26,14 @@
         <activity
             android:name=".activity.WatchlistActivity"
             android:label="@string/title_activity_watchlist"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".activity.CadastroActivity" />
-        <activity android:name=".activity.LoginActivity" />
-        <activity android:name=".activity.MainActivity">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.CadastroActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.LoginActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".activity.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
